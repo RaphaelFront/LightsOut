@@ -20,6 +20,14 @@ for (let row = 0; row < GRID_WIDTH; row++) {
     }
 }
 
+for(boxRow of boxes) {
+    for(box of boxRow) {
+        if(Math.random() < 0.5) {
+            click(box);
+        }
+    }
+}
+
 function click(box) {
     const x = Number(box.dataset.col);
     const y = Number(box.dataset.row);
