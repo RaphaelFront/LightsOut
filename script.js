@@ -1,6 +1,10 @@
 GRID_WIDTH = 5;
 
 const grid = document.querySelector(".grid");
+
+grid.style.gridTemplateColumns = `repeat(${GRID_WIDTH}, 80px)`;
+grid.style.gridTemplateRows = `repeat(${GRID_WIDTH}, 80px)`;
+
 const boxes = [];
 
 for (let row = 0; row < GRID_WIDTH; row++) {
