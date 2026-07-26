@@ -1,33 +1,44 @@
-GRID_WIDTH = 5;
 
 const grid = document.querySelector(".grid");
+const slider = document.getElementById("width_slider");
+let GRID_WIDTH = 5;
 
-grid.style.gridTemplateColumns = `repeat(${GRID_WIDTH}, 80px)`;
-grid.style.gridTemplateRows = `repeat(${GRID_WIDTH}, 80px)`;
+let boxes = [];
+update();
 
-const boxes = [];
+slider.addEventListener("input", function() {
+    GRID_WIDTH = Number(slider.value);
+    console.log(typeof slider.value);
+    update();
+});
 
-for (let row = 0; row < GRID_WIDTH; row++) {
-    boxes[row] = [];
-    for (let col = 0; col < GRID_WIDTH; col++) {
-        const box = document.createElement("div");
-        box.className = "box";
+function update() {
+    grid.innerHTML = "";
+    grid.style.gridTemplateColumns = `repeat(${GRID_WIDTH}, 80px)`;
+    grid.style.gridTemplateRows = `repeat(${GRID_WIDTH}, 80px)`;
+    boxes = [];
+    for (let row = 0; row < GRID_WIDTH; row++) {
+        boxes[row] = [];
+        for (let col = 0; col < GRID_WIDTH; col++) {
+            const box = document.createElement("div");
+            box.className = "box";
 
-        boxes[row][col] = box;
+            boxes[row][col] = box;
 
-        box.dataset.row = row;
-        box.dataset.col = col;
+            box.dataset.row = row;
+            box.dataset.col = col;
 
-        box.addEventListener("click", () => click(box));
+            box.addEventListener("click", () => click(box));
 
-        grid.appendChild(box);
+            grid.appendChild(box);
+        }
     }
-}
 
-for(boxRow of boxes) {
-    for(box of boxRow) {
-        if(Math.random() < 0.5) {
-            click(box);
+    for(boxRow of boxes) {
+        for(box of boxRow) {
+            if(Math.random() < 0.5) {
+                click(box);
+            }
         }
     }
 }
