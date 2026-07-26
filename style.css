@@ -1,0 +1,26 @@
+body {
+margin: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+background: #363636;
+font-family: Arial, sans-serif;
+}
+
+.grid {
+display: grid;
+grid-template-columns: repeat(5, 80px);
+grid-template-rows: repeat(5, 80px);
+gap: 8px;
+}
+
+.box {
+background: #1d1d1d;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 20px;
+font-weight: bold;
+border-radius: 6px;
+}
