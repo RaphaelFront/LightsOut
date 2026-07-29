@@ -1,6 +1,7 @@
 
 const grid = document.querySelector(".grid");
 const slider = document.getElementById("width_slider");
+const body = document.getElementById("body");
 let GRID_WIDTH = 5;
 
 let boxes = [];
@@ -14,8 +15,9 @@ slider.addEventListener("input", function() {
 
 function update() {
     grid.innerHTML = "";
-    grid.style.gridTemplateColumns = `repeat(${GRID_WIDTH}, 80px)`;
-    grid.style.gridTemplateRows = `repeat(${GRID_WIDTH}, 80px)`;
+    grid.style.gridTemplateColumns = `repeat(${GRID_WIDTH},${400/GRID_WIDTH}px)`;
+    grid.style.gridTemplateRows = `repeat(${GRID_WIDTH}, ${400/GRID_WIDTH}px)`;
+    grid.style.gap = `${60/GRID_WIDTH}px`
     boxes = [];
     for (let row = 0; row < GRID_WIDTH; row++) {
         boxes[row] = [];
@@ -53,6 +55,19 @@ function click(box) {
     toggleBox(x, y+1);
     toggleBox(x, y-1);
 
+    checkCompletion();
+
+}
+
+function checkCompletion() {
+    for(boxRow of boxes) {
+        for(box of boxRow) {
+            if(box.style.backgroundColor === "yellow") {
+                return;
+            }
+        }
+    }
+    update();
 }
 
 function toggleBox(x, y) {
